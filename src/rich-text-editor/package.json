@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "inspect": "npx @web-applets/inspector .",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@tiptap/core": "^2.11.3",
+    "@tiptap/starter-kit": "^2.11.3",
+    "@web-applets/sdk": "latest"
+  },
+  "devDependencies": {
+    "vite": "^5.4.9"
+  }
+}
