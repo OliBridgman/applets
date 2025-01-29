@@ -7,7 +7,10 @@
   "dependencies": {
     "@tiptap/core": "^2.11.3",
     "@tiptap/starter-kit": "^2.11.3",
-    "@web-applets/sdk": "latest"
+    "@vitejs/plugin-react": "^4.3.4",
+    "@web-applets/sdk": "latest",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "vite": "^5.4.9"
