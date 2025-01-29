@@ -1,8 +1,6 @@
 import { applets } from "@web-applets/sdk";
-import { Editor } from "@tiptap/core";
-import StarterKit from "@tiptap/starter-kit";
-
-let editor: Editor | null;
+import { initialise } from "./root";
+import { editorStore } from "./store";
 
 const context = applets.getContext();
 
@@ -17,32 +15,17 @@ context.setActionHandler("write", ({ text }) => {
 });
 
 context.ondata = () => {
-  if (!editor) {
-    throw new Error("No editor found");
-  }
-
   if (context?.data?.text) {
-    editor.commands.setContent(context.data.text);
+    editorStore.setData(context?.data?.text);
   }
 };
 
 context.onload = () => {
-  const editorElement = document.querySelector("#editor");
-  if (!editorElement) {
-    throw new Error("No element found for editor");
-  }
-  loadEditor(editorElement);
+  initialise({});
 };
 
-function loadEditor(element: Element) {
-  editor = new Editor({
-    element: element,
-    extensions: [StarterKit],
-    content: "",
-    editable: true,
-    onUpdate: ({ editor }) => {
-      const html = editor.getHTML();
-      context.setData(html);
-    },
-  });
-}
+editorStore.subscribe(() => {
+  console.log("subscription?");
+  const content = editorStore.getContent();
+  context.setData(content);
+});
